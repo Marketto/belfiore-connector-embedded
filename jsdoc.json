@@ -1,0 +1,25 @@
+{
+    "source": {
+        "includePattern": ".+\\.js(doc|x)?$",
+        "exclude": [
+            "node_modules",
+            "dist",
+            "docs",
+            "test",
+            "scripts",
+            "test",
+            "demo"
+        ]
+    },
+    "opts": {
+        "template": "node_modules/foodoc/template",
+        "readme": "README.md",
+        "encoding": "utf8",
+        "destination": "./docs/",
+        "recurse": true
+    },
+    "templates": {
+        "systemName"            : "Belfiore Connector Embedded",
+        "systemSummary"         : "Belfiore datasource connector: embedded dataset"
+    }
+}
