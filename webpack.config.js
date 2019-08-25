@@ -1,11 +1,11 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/belfiore-connector-embedded.js',
+    entry: './src/belfiore.js',
     mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'belfiore-connector-embedded.min.js',
+        filename: 'belfiore.min.js',
         library: 'belfiore',
         libraryTarget: 'umd',
         globalObject: 'typeof self !== \'undefined\' ? self : this'

@@ -44,10 +44,27 @@ describe('belfiore', () => {
                 belfioreList[32].name.should.be.not.equal(belfioreList[632].name);
             });
         });
+        describe('belfiore.searchByName()', () => {
+            it('Should return many results for Rome, including H501', async () => {
+                const results = await belfiore.searchByName('Roma');
+                results.some(result => result.belfioreCode === 'H501').should.be.true;
+            });
+
+            it('Should return empty results for Xdhk', async () => {
+                const results = await belfiore.searchByName('Xdhk');
+                results.length.should.be.equal(0);
+            });
+            
+            const resultsPromise = belfiore.searchByName(null, 37);
+            it('Should return toArray() providing empty or null name', async () => {
+                const results = await resultsPromise;
+                results.length.should.be.equal(37);
+            });
+        });
         describe('belfiore.findByName()', () => {
             it('Should return H501 for Rome', async () => {
                 const result = await belfiore.findByName('Roma');
-                result.name.should.be.equal('ROMA');
+                result.belfioreCode.should.be.equal('H501');
             });
         });
     });

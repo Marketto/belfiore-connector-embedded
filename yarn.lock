@@ -90,10 +90,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@marketto/belfiore-connector@^1.0.2":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.3.tgz#9d50b65f510d441b860d91af885183369e91f011"
-  integrity sha512-k9S0x9V05+nNVSKiWaEmVxOz419CKoC213a80v3qMyPrt8hPa/3Guir0O+AL7lbG+20GfOcbm+U/xyK5DqzLqA==
+"@marketto/belfiore-connector@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.5.tgz#3b5a9ba89189abaacb18414b694459f12c4af133"
+  integrity sha512-gby0M3f15BYc/3UOxqIwQX8y5VndRUY+2k3F9S8fROlX01wM3NqgV8FWM8KZOla1JC2LYZcTwjN0JGp2I62jXg==
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"

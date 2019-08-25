@@ -2,6 +2,7 @@
   "name": "@marketto/belfiore-connector-embedded",
   "version": "1.0.0",
   "description": "Belfiore datasource connector: embedded dataset",
+  "main": "dist/belfiore.min.js",
   "author": "Marco Ricupero <marco.ricupero@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -14,7 +15,7 @@
     "build": "npx webpack",
     "docs": "npx rimraf ./docs && npx jsdoc . -c jsdoc.json",
     "update-lovs": "node ./scripts/locationUpdater.js",
-    "release": "npm run-script coverage && npm run-script docs && npm run-script update-lovs && npm run-script build"
+    "release": " npm run-script update-lovs && npm run-script coverage && npm run-script docs && npm run-script build"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,7 @@
     "Belfiore"
   ],
   "dependencies": {
-    "@marketto/belfiore-connector": "^1.0.2",
+    "@marketto/belfiore-connector": "^1.0.6",
     "moment": "^2.24.0"
   },
   "devDependencies": {
