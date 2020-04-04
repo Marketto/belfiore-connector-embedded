@@ -90,10 +90,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@marketto/belfiore-connector@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.5.tgz#3b5a9ba89189abaacb18414b694459f12c4af133"
-  integrity sha512-gby0M3f15BYc/3UOxqIwQX8y5VndRUY+2k3F9S8fROlX01wM3NqgV8FWM8KZOla1JC2LYZcTwjN0JGp2I62jXg==
+"@marketto/belfiore-connector@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.6.tgz#8eeb8a9b9fe1142238c868e39efdd9ebd5f964a3"
+  integrity sha512-3bttcKBwCdPlpTdfgLEl/jaCQrDIh86HUMHpxKAHSi7akQonQyc0bCLCj7OivxOkCWLlI32/IqGNAd1o+R1v1A==
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -262,9 +262,9 @@ abbrev@1:
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
 
 acorn@^6.2.1:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
-  integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 ajv-errors@^1.0.0:
   version "1.0.1"
