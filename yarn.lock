@@ -90,10 +90,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@marketto/belfiore-connector@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.5.tgz#3b5a9ba89189abaacb18414b694459f12c4af133"
-  integrity sha512-gby0M3f15BYc/3UOxqIwQX8y5VndRUY+2k3F9S8fROlX01wM3NqgV8FWM8KZOla1JC2LYZcTwjN0JGp2I62jXg==
+"@marketto/belfiore-connector@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.6.tgz#8eeb8a9b9fe1142238c868e39efdd9ebd5f964a3"
+  integrity sha512-3bttcKBwCdPlpTdfgLEl/jaCQrDIh86HUMHpxKAHSi7akQonQyc0bCLCj7OivxOkCWLlI32/IqGNAd1o+R1v1A==
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -4143,9 +4143,9 @@ posix-character-classes@^0.1.0:
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
 postcss@^7.0.5:
-  version "7.0.17"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.17.tgz#4da1bdff5322d4a0acaab4d87f3e782436bad31f"
-  integrity sha512-546ZowA+KZ3OasvQZHsbuEpysvwTZNGJv9EfyCQdsIDltPSWHAeTQ5fQy/Npi2ZDtLI3zs7Ps/p6wThErhm9fQ==
+  version "7.0.36"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.36.tgz#056f8cffa939662a8f5905950c07d5285644dfcb"
+  integrity sha512-BebJSIUMwJHRH0HAQoxN4u1CN86glsrwsW0q7T+/m44eXOUAxSNdHRkNZPYz5vVUbg17hFgOQDE7fZk7li3pZw==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
