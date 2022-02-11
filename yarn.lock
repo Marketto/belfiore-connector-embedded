@@ -90,10 +90,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@marketto/belfiore-connector@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.5.tgz#3b5a9ba89189abaacb18414b694459f12c4af133"
-  integrity sha512-gby0M3f15BYc/3UOxqIwQX8y5VndRUY+2k3F9S8fROlX01wM3NqgV8FWM8KZOla1JC2LYZcTwjN0JGp2I62jXg==
+"@marketto/belfiore-connector@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.6.tgz#8eeb8a9b9fe1142238c868e39efdd9ebd5f964a3"
+  integrity sha512-3bttcKBwCdPlpTdfgLEl/jaCQrDIh86HUMHpxKAHSi7akQonQyc0bCLCj7OivxOkCWLlI32/IqGNAd1o+R1v1A==
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -4078,9 +4078,9 @@ path-type@^3.0.0:
     pify "^3.0.0"
 
 pathval@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/pathval/-/pathval-1.1.0.tgz#b942e6d4bde653005ef6b71361def8727d0645e0"
-  integrity sha1-uULm1L3mUwBe9rcTYd74cn0GReA=
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/pathval/-/pathval-1.1.1.tgz#8534e77a77ce7ac5a2512ea21e0fdb8fcf6c3d8d"
+  integrity sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==
 
 pbkdf2@^3.0.3:
   version "3.0.17"
