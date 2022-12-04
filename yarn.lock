@@ -90,10 +90,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@marketto/belfiore-connector@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.5.tgz#3b5a9ba89189abaacb18414b694459f12c4af133"
-  integrity sha512-gby0M3f15BYc/3UOxqIwQX8y5VndRUY+2k3F9S8fROlX01wM3NqgV8FWM8KZOla1JC2LYZcTwjN0JGp2I62jXg==
+"@marketto/belfiore-connector@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@marketto/belfiore-connector/-/belfiore-connector-1.0.6.tgz#8eeb8a9b9fe1142238c868e39efdd9ebd5f964a3"
+  integrity sha512-3bttcKBwCdPlpTdfgLEl/jaCQrDIh86HUMHpxKAHSi7akQonQyc0bCLCj7OivxOkCWLlI32/IqGNAd1o+R1v1A==
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -1235,9 +1235,9 @@ decamelize@^1.1.2, decamelize@^1.2.0:
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
 
 decompress-response@^3.3.0:
   version "3.3.0"
