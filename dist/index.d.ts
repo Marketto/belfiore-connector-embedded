@@ -56,9 +56,9 @@ declare class BelfioreConnector extends BelfioreAbstractConnector {
      */
     private belfioreFromInt;
     /**
-     * Converst Base 32 number of days since 01/01/1861 to Moment instance
+     * Converst Base 32 number of days since 01/01/1861 to Date instance
      * @param base32daysFrom1861 Base 32 number of days from 1861-01-01
-     * @returns Moment instance date
+     * @returns Date instance
      */
     private decodeDate;
     /**
