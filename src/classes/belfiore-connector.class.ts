@@ -1,4 +1,4 @@
-import moment, { Moment } from "moment";
+import dayjs, { Dayjs } from "dayjs";
 import {
 	BelfioreAbstractConnector,
 	BelfiorePlace,
@@ -92,13 +92,13 @@ export default class BelfioreConnector extends BelfioreAbstractConnector {
 	}
 
 	/**
-	 * Converst Base 32 number of days since 01/01/1861 to Moment instance
+	 * Converst Base 32 number of days since 01/01/1861 to Date instance
 	 * @param base32daysFrom1861 Base 32 number of days from 1861-01-01
-	 * @returns Moment instance date
+	 * @returns Date instance
 	 */
-	private decodeDate(base32daysFrom1861: string): Moment {
+	private decodeDate(base32daysFrom1861: string): Dayjs {
 		const italyBirthDatePastDays = parseInt(base32daysFrom1861, 32);
-		return moment(this.ITALY_KINGDOM_BIRTHDATE).add(
+		return dayjs(this.ITALY_KINGDOM_BIRTHDATE).add(
 			italyBirthDatePastDays,
 			"days"
 		);
@@ -145,8 +145,8 @@ export default class BelfioreConnector extends BelfioreAbstractConnector {
 	private data: IBelfioreDbData[];
 	private licenses: IBelfioreDbLicense[];
 	private sources: string[];
-	private toDate: Moment | undefined;
-	private fromDate: Moment | undefined;
+	private toDate: Date | undefined;
+	private fromDate: Date | undefined;
 	private codeMatcher: RegExp | undefined;
 	private province: string | undefined;
 
@@ -290,10 +290,10 @@ export default class BelfioreConnector extends BelfioreAbstractConnector {
 		if (
 			(this.fromDate &&
 				resourceData.expirationDate &&
-				this.fromDate.isAfter(expirationDate, "day")) ||
+				dayjs(this.fromDate).isAfter(expirationDate, "day")) ||
 			(this.toDate &&
 				resourceData.creationDate &&
-				this.toDate.isBefore(creationDate, "day"))
+				dayjs(this.toDate).isBefore(creationDate, "day"))
 		) {
 			return null;
 		}
@@ -417,11 +417,15 @@ export default class BelfioreConnector extends BelfioreAbstractConnector {
 	 * @returns Belfiore instance filtered by active date
 	 * @public
 	 */
-	public active(date: MultiFormatDate = moment()): BelfioreConnector {
+	public active(date: MultiFormatDate = new Date()): BelfioreConnector {
 		return new BelfioreConnector({
 			...this.config,
-			fromDate: moment(date),
-			toDate: moment(date),
+			fromDate: Array.isArray(date)
+				? new Date(date[0], date[1] ?? 0, date[2] ?? 1)
+				: dayjs(date).toDate(),
+			toDate: Array.isArray(date)
+				? new Date(date[0], date[1] ?? 0, date[2] ?? 1)
+				: dayjs(date).toDate(),
 		});
 	}
 
@@ -431,10 +435,12 @@ export default class BelfioreConnector extends BelfioreAbstractConnector {
 	 * @returns Belfiore instance filtered by active date
 	 * @public
 	 */
-	public from(date: MultiFormatDate = moment()): BelfioreConnector {
+	public from(date: MultiFormatDate = new Date()): BelfioreConnector {
 		return new BelfioreConnector({
 			...this.config,
-			fromDate: moment(date),
+			fromDate: Array.isArray(date)
+				? new Date(date[0], date[1] ?? 0, date[2] ?? 1)
+				: dayjs(date).toDate(),
 		});
 	}
 

@@ -36,8 +36,8 @@
 		"embedded"
 	],
 	"dependencies": {
-		"@marketto/belfiore-connector": "^2.0.0",
-		"moment": "^2.24.0"
+		"@marketto/belfiore-connector": "^3.0.0",
+		"dayjs": "^1.11.13"
 	},
 	"devDependencies": {
 		"@istanbuljs/nyc-config-typescript": "^1.0.2",

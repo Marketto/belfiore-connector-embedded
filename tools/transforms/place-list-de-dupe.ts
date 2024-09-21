@@ -1,18 +1,28 @@
 import _ from "lodash";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Transform, TransformCallback } from "stream";
 import { belfioreToInt, cleanObject, DEFAULT_CREATION_DATE } from "../utils";
-import type { IMappedLocationType } from "../models/mapped-location-type.interface";
 
 const MERGE_MAP: {
-	[key: string]: (valS: string | null, valD: string | null) => string | null;
+	[key: string]: (
+		valS: string | null,
+		valD: string | null
+	) => string | Date | null;
 } = {
 	active: (valS: string | null, valD: string | null): string | null =>
 		valS || valD,
-	creationDate: (valS: string | null, valD: string | null): string | null =>
-		valS && valD ? moment.min(moment(valD), moment(valS)).toISOString() : null,
-	expirationDate: (valS: string | null, valD: string | null): string | null =>
-		valD && valS ? moment.max(moment(valD), moment(valS)).toISOString() : null,
+	creationDate: (valS: string | null, valD: string | null): Date | null =>
+		valS && valD
+			? dayjs(Math.min(dayjs(valD).valueOf(), dayjs(valS).valueOf())).toDate()
+			: valS || valD
+			? dayjs(valS || valD).toDate()
+			: null,
+	expirationDate: (valS: string | null, valD: string | null): Date | null =>
+		valD && valS
+			? dayjs(Math.max(dayjs(valD).valueOf(), dayjs(valS).valueOf())).toDate()
+			: valS || valD
+			? dayjs(valS || valD).toDate()
+			: null,
 };
 
 export const merge = <T extends { [key: string]: any }>(...entries: T[]) => {
@@ -20,10 +30,7 @@ export const merge = <T extends { [key: string]: any }>(...entries: T[]) => {
 		return entries[0];
 	}
 	const sortedEntries = entries.sort((a, b) =>
-		moment(b.creationDate || DEFAULT_CREATION_DATE).diff(
-			moment(a.creationDate || DEFAULT_CREATION_DATE),
-			"day"
-		)
+		dayjs(b.creationDate).diff(dayjs(a.creationDate), "day")
 	);
 
 	const merged = sortedEntries.reduce((aggr, entry) =>
@@ -43,13 +50,19 @@ export const merge = <T extends { [key: string]: any }>(...entries: T[]) => {
 	return cleanObject(merged);
 };
 
-export const deDupeList = (dataList: IMappedLocationType[], groupKey: string) =>
-	Object.entries(_.groupBy(dataList, groupKey)).map(
-		([groupValue, entries]) => ({
-			...merge(...entries),
-			[groupKey]: groupValue,
-		})
-	);
+export const deDupeList = <T extends { [key: string]: unknown }>(
+	dataList: T[],
+	groupKeys: (keyof T)[]
+) =>
+	groupKeys.reduce((aggr, key) => {
+		const { emptyKey, ...group } = _.groupBy(
+			aggr,
+			(record) => record?.[key] || "emptyKey"
+		);
+		return Object.values(group)
+			.map((entries) => merge(...entries))
+			.concat(Object.values(emptyKey || {}));
+	}, dataList);
 
 export class PlaceListDeDupe extends Transform {
 	private groupKey: string;
@@ -72,7 +85,7 @@ export class PlaceListDeDupe extends Transform {
 				return callback(err as Error);
 			}
 		}
-		if (element?.[this.groupKey]) {
+		if (element?.[this.groupKey] || element?.belfioreCode) {
 			this.storage.push(element);
 		}
 		callback();
@@ -81,12 +94,18 @@ export class PlaceListDeDupe extends Transform {
 	public _flush(callback: TransformCallback) {
 		let ddl;
 		try {
-			const firstDedupe = deDupeList(this.storage, this.groupKey).filter(
-				({ belfioreCode }) => !!belfioreCode
-			);
-			ddl = deDupeList(firstDedupe, "belfioreCode").sort(
-				(a, b) => belfioreToInt(a.belfioreCode) - belfioreToInt(b.belfioreCode)
-			);
+			ddl = deDupeList(this.storage, [this.groupKey, "belfioreCode"])
+				.filter(({ belfioreCode }) => !!belfioreCode)
+				.sort(
+					(a, b) =>
+						belfioreToInt(a.belfioreCode) - belfioreToInt(b.belfioreCode)
+				)
+				.map((record) => ({
+					...record,
+					creationDate:
+						record.creationDate || dayjs(DEFAULT_CREATION_DATE).toDate(),
+					expirationDate: record.expirationDate || dayjs("9999-12-31").toDate(),
+				}));
 		} catch (err) {
 			this.storage.length = 0;
 			return callback(err as Error);

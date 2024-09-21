@@ -1,5 +1,4 @@
 import _ from "lodash";
-import moment from "moment";
 import { Transform, TransformCallback, TransformOptions } from "stream";
 import {
 	belfioreToInt,
@@ -9,6 +8,7 @@ import {
 } from "../utils";
 import { DataSourceCodeEnum } from "../models/data-source-code.enum";
 import type { IMappedLocationType } from "../models/mapped-location-type.interface";
+import dayjs from "dayjs";
 
 export const compressBelfioreCode = (belfioreCode: string): string =>
 	belfioreToInt(belfioreCode).toString(32).padStart(3, "0");
@@ -25,12 +25,12 @@ export const compressDataSource = (
 export const compressDate = (date?: string): string => {
 	if (
 		!date ||
-		moment(date).isAfter() ||
-		moment(date).isBefore(DEFAULT_CREATION_DATE)
+		dayjs(date).isAfter(new Date(), "day") ||
+		dayjs(date).isBefore(DEFAULT_CREATION_DATE, "day")
 	) {
 		return "";
 	}
-	return moment(date)
+	return dayjs(date)
 		.diff(DEFAULT_CREATION_DATE, "days")
 		.toString(32)
 		.padStart(4, "0");

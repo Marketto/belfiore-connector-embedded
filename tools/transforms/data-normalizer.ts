@@ -1,5 +1,5 @@
 import _ from "lodash";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Transform, TransformCallback, TransformOptions } from "stream";
 import { cleanObject, toUtf8 } from "../utils";
 import type { IAssetGeneratorConfigResource } from "../models/asset-generator-config-resource.interface";
@@ -40,13 +40,17 @@ const TYPE_STRATEGY_MAP = {
 		return isNaN(parsedValue) ? undefined : parsedValue;
 	},
 	date_start: (value: any) =>
-		value && moment(value, "YYYY-MM-DD").startOf("day").toDate(),
+		value && dayjs(value, "YYYY-MM-DD").startOf("day").toDate(),
 	date_end: (value: any) =>
-		value && moment(value, "YYYY-MM-DD").endOf("day").toDate(),
+		value && dayjs(value, "YYYY-MM-DD").endOf("day").toDate(),
 	year_start: (value: any) =>
-		value && moment(value, "YYYY").startOf("year").toDate(),
+		value &&
+		(!isNaN(value) || typeof value === "string") &&
+		dayjs(`${value}`, "YYYY").startOf("year").toDate(),
 	year_end: (value: any) =>
-		value && moment(value, "YYYY").endOf("year").toDate(),
+		value &&
+		(!isNaN(value) || typeof value === "string") &&
+		dayjs(`${value}`, "YYYY").endOf("year").toDate(),
 	bool: (value: any) =>
 		value === 1 || /^(?:1|y(?:es)?|s[iì]?)$/i.test(value) || undefined,
 	license: (value: any) => value,

@@ -33,13 +33,31 @@ describe("Belfiore", () => {
 				place?.province?.should.be.equal("RM");
 				place?.dataSource?.should.be.an("object");
 			});
+			it("Should return code A662 for Bari", async () => {
+				const place = await belfioreConnector.findByName("Bari");
+				place?.belfioreCode.should.be.equal("A662");
+				place?.creationDate?.getFullYear().should.be.equal(1863);
+				place?.expirationDate?.getFullYear().should.be.equal(9999);
+				place?.province?.should.be.equal("BA");
+				place?.dataSource?.should.be.an("object");
+			});
+			it("Should return code Z154 for Russian Federation", async () => {
+				const place = await belfioreConnector.findByCode("Z154");
+				place?.belfioreCode.should.be.equal("Z154");
+				place?.creationDate?.getFullYear().should.be.equal(1992);
+				place?.expirationDate?.getFullYear().should.be.equal(9999);
+				place?.dataSource?.should.be.an("object");
+			});
 		});
-		describe("belfioreConnector.toArray()", async () => {
-			const belfioreList = await belfioreConnector.toArray();
-			it("Should return an Array of places", () => {
+		describe("belfioreConnector.toArray()", function () {
+			this.timeout(5000);
+			const belfioreListPromise = belfioreConnector.toArray();
+			it("Should return an Array of places", async () => {
+				const belfioreList = await belfioreListPromise;
 				expect(belfioreList).to.be.an("array");
 			});
-			it("Should have different elements", () => {
+			it("Should have different elements", async () => {
+				const belfioreList = await belfioreListPromise;
 				belfioreList[10].belfioreCode.should.be.not.equal(
 					belfioreList[11].belfioreCode
 				);
