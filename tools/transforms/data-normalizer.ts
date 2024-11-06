@@ -29,7 +29,7 @@ const TYPE_STRATEGY_MAP = {
 	text: (value: any) => toUtf8(value),
 	name: (value: any) =>
 		toUtf8(
-			[value.toUpperCase(), value.toLowerCase()].includes(value)
+			value && [value.toUpperCase(), value.toLowerCase()].includes(value)
 				? toFirstLetterUpperCase(value)
 				: value
 		),
@@ -70,10 +70,10 @@ export class DataNormalizer extends Transform {
 	public _transform(chunk: any, encoding: string, callback: TransformCallback) {
 		let element: { [key: string]: unknown };
 		if (this.readableObjectMode) {
-			element = JSON.parse(toUtf8(Buffer.from(JSON.stringify(chunk))));
+			element = chunk;
 		} else {
 			try {
-				element = JSON.parse(toUtf8(chunk));
+				element = JSON.parse(chunk);
 			} catch (err) {
 				return callback(err as Error);
 			}
@@ -101,7 +101,7 @@ export class DataNormalizer extends Transform {
 			return callback();
 		}
 
-		const normalizedChunk = {
+		const normalizedChunk: { [key: string]: unknown } = {
 			...mappedEntry,
 			dataSource: mappedEntry?.dataSource || this.config?.defaultSourceCode,
 		};

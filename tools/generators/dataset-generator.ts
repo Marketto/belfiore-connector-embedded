@@ -9,7 +9,7 @@ import { DataNormalizer } from "../transforms/data-normalizer";
 import { PlaceListCompressor } from "../transforms/place-list-compressor";
 import { PlaceListDeDupe } from "../transforms/place-list-de-dupe";
 import { PlaceListUnZip } from "../transforms/place-list-unzip";
-import { errorHandler } from "../utils";
+import { errorHandler, toUtf8 } from "../utils";
 import { XlsxToJson } from "../transforms/xlsx-to-json";
 import type { IAssetGeneratorConfigResource } from "../models/asset-generator-config-resource.interface";
 import { IAssetGeneratorConfig } from "../models/asset-generator-config.interface";
@@ -28,6 +28,16 @@ const streamList: NodeJS.ReadableStream[] = (
 	if (/\.xlsx?$/i.test(cfg.target || (cfg.uri as string))) {
 		cfgPipeline.push(new XlsxToJson());
 	} else if (/\.csv?$/i.test(cfg.target || (cfg.uri as string))) {
+		if (cfg.encoding) {
+			cfgPipeline.push(
+				new Transform({
+					transform(chunk: Buffer, encoding, callback) {
+						const utf8Chunk = toUtf8(chunk, cfg.encoding);
+						callback(null, Buffer.from(utf8Chunk));
+					},
+				})
+			);
+		}
 		cfgPipeline.push(
 			csvtojson(
 				{

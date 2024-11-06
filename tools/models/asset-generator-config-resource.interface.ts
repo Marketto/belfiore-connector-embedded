@@ -19,6 +19,11 @@ export interface IAssetGeneratorConfigResource {
 	delimiter?: string;
 
 	/**
+	 * @description Force source encoding
+	 */
+	encoding?: string;
+
+	/**
 	 * @description Column definition mapping
 	 */
 	columns: {
